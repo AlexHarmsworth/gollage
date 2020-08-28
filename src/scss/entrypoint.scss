@@ -1,3 +1,7 @@
-@import 'typography.scss';
-@import 'constants.scss';
-@import '../components/Title/Title.scss';
+// Global
+@import "reset.scss";
+@import "typography.scss";
+@import "constants.scss";
+
+// Components
+@import "../components/Title/Title.scss";

@@ -1,8 +1,13 @@
-html {
-	font-size: 62.5%;
+@font-face {
+  font-family: "Permanent Marker";
+  src: url("../assets/fonts/permanent-marker/permanentMarker-Regular.ttf")
+    format("woff");
 }
 
-#root * {
-	font-family: 'Permanent Marker', cursive;
-	box-sizing: border-box;
+html {
+  font-size: 62.5%;
+}
+
+* {
+  font-family: "Permanent Marker", cursive;
 }
