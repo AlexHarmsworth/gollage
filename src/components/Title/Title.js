@@ -1,25 +1,22 @@
-import React from 'react';
-import './Title.css';
+import React, { useState } from "react";
 import { updateURLParam, getURLParam } from "../Url/Url";
 
-const titleKey = "title";
+function Title() {
+  const titleKey = "title";
+  const defaultValue = getURLParam(titleKey) || "Gollage";
+  const [value, setValue] = useState(defaultValue);
+  const handleTitleChange = ({ target }) => {
+    setValue(target.value);
+    updateURLParam(titleKey, target.value);
+  };
 
-class Title extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            value: getURLParam(titleKey) || "Gollage",
-        };
-    }
-
-    updateTitleParam({ target }) {
-        this.setState({ value: target.value});
-        updateURLParam(titleKey, target.value);
-    }
-
-    render() {
-        return <input onChange={this.updateTitleParam.bind(this)} className="c-title" value={this.state.value}></input>;
-    }
+  return (
+    <input
+      className="c-title"
+      value={value}
+      onChange={handleTitleChange}
+    ></input>
+  );
 }
 
 export default Title;
