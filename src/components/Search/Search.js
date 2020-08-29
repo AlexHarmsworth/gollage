@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getSearch } from "../API/API";
+import { getSearch, extractData } from "../API/API";
 import Card from "../Card/Card";
 import Save from "../Save/Save";
 
@@ -11,13 +11,7 @@ function Search() {
   const handleClick = async () => {
     const offset = randomInt();
     const res = await getSearch({ query, offset });
-    const cleanArr = res.data.map((gif) => {
-      return {
-        url: gif.images.original.url,
-        id: gif.id,
-        title: gif.title,
-      };
-    });
+    const cleanArr = res.data.map(extractData);
     setData(cleanArr);
   };
 
@@ -35,8 +29,8 @@ function Search() {
       </div>
       <div className="c-search-results">
         {data.map((gif, index) => (
-          <div key={gif.title + index} className="c-search-card">
-            <Card title={gif.title} url={gif.url} id={gif.id} />
+          <div key={gif.title + index} data-id={gif.id} className="c-search-card">
+            <Card title={gif.title} url={gif.url} />
             <Save class={"c-search-save"} />
           </div>
         ))}

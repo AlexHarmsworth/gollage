@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 
 function Save(props) {
   const handleClick = ({ target }) => {
-    const gif = target.previousElementSibling;
+    const gif = target.closest('[data-id]');
     const gifID = gif.dataset.id;
     appendURLParam("ids", gifID);
+    target.remove();
   };
 
   return (
