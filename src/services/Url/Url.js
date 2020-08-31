@@ -31,7 +31,9 @@ export const appendURLParam = (key, value) => {
 }
 
 export const deleteURLParamValue = (key, value) => {
-  const currentValueArr = getURLParam(key).split(",");
+  const currentValue = getURLParam(key);
+  if (!currentValue) return;
+  const currentValueArr = currentValue.split(",");
   const newValue = currentValueArr.filter(id => id !== value).join(",");
   updateURLParam(key, newValue);
 }

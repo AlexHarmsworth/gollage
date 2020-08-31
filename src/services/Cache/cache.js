@@ -20,11 +20,17 @@ export default class Cache {
     this.save();
   }
 
+  remove(id) {
+    const newArr = this.cache.filter(gif => gif.id !== id);
+    this.cache = newArr;
+  }
+
   save() {
     window.localStorage.setItem(this.cacheKey, JSON.stringify(this.cache));
   }
 
   validateCache(ids) {
+    if (!ids) return false;
     const idArr = ids.split(",");
     return idArr.length === this.cache.length;
   }

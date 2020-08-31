@@ -6,7 +6,7 @@ import Switch from "./components/Switch/Switch";
 import Board from "./components/Board/Board";
 
 function App() {
-  const gifParams = getURLParam("ids") || "";
+  const gifParams = getURLParam("ids");
   let [showBoard, setShowBoard] = useState(Boolean(gifParams));
   const handleSwitch = () => setShowBoard(showBoard = !showBoard);
 

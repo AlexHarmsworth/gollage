@@ -5,7 +5,7 @@ import { deleteURLParamValue } from "../../services/Url/Url";
 function Delete(props) {
   const handleClick = ({ target }) => {
     const gif = target.closest("[data-id]");
-    gif.remove();    
+    gif.remove();
     deleteURLParamValue("ids", gif.dataset.id);
   };
 

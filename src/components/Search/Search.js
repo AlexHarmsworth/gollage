@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getSearch, extractData } from "../../services/API/API";
 import Cache from "../../services/Cache/cache";
-import Card from "../Card/Card";
+import Gif from "../Gif/Gif";
 import Save from "../Save/Save";
 
 function Search() {
@@ -34,6 +34,11 @@ function Search() {
           placeholder="Search for gifs!"
           value={query}
           onChange={handleInput}
+          onKeyDown={ ({ key }) => {
+            if (key === "Enter") {
+              handleClick();
+            }
+          }}
         ></input>
         <button type="submit" className="c-search-button" onClick={handleClick}>
           Go!
@@ -42,7 +47,7 @@ function Search() {
       <div className="c-search-results">
         {data.map((gif, index) => (
           <div key={gif.title + index} data-id={gif.id} className="c-search-card">
-            <Card title={gif.title} url={gif.url} />
+            <Gif title={gif.title} url={gif.url} />
             <Save class={"c-search-save"} />
           </div>
         ))}
