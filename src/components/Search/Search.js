@@ -1,19 +1,30 @@
 import React, { useState } from "react";
-import { getSearch, extractData } from "../API/API";
+import { getSearch, extractData } from "../../services/API/API";
+import Cache from "../../services/Cache/cache";
 import Card from "../Card/Card";
 import Save from "../Save/Save";
 
 function Search() {
-  const [query, setQuery] = useState("");
-  const [data, setData] = useState([]);
-  const randomInt = () => Math.floor(Math.random() * 100);
+  const resultsCacheKey = "searchResults"
+  const queryCacheKey = "searchQuery"
+  const resultsCache = new Cache({ cacheKey: resultsCacheKey });
+  const queryCache = new Cache({ cacheKey: queryCacheKey });
+  const [query, setQuery] = useState(queryCache.get(queryCacheKey)[0] || "");
+  const [data, setData] = useState(resultsCache.get(resultsCacheKey) || []);
+  const randomInt = () => Math.floor(Math.random() * 10);
 
   const handleClick = async () => {
     const offset = randomInt();
     const res = await getSearch({ query, offset });
     const cleanArr = res.data.map(extractData);
     setData(cleanArr);
+    resultsCache.set(cleanArr);
   };
+
+  const handleInput = ({ target }) => {
+    setQuery(target.value);
+    queryCache.set([target.value]);
+  }
 
   return (
     <div className="c-search">
@@ -21,7 +32,8 @@ function Search() {
         <input
           className="c-search-input"
           placeholder="Search for gifs!"
-          onChange={({ target }) => setQuery(target.value)}
+          value={query}
+          onChange={handleInput}
         ></input>
         <button type="submit" className="c-search-button" onClick={handleClick}>
           Go!

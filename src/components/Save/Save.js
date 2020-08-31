@@ -1,5 +1,5 @@
 import React from "react";
-import { appendURLParam } from "../Url/Url";
+import { appendURLParam } from "../../services/Url/Url";
 import PropTypes from "prop-types";
 
 function Save(props) {
