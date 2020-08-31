@@ -22,7 +22,7 @@ function Board(props) {
     if (props.gifs && !isCacheValid) {
       loadGifs();
     }
-  }, []);
+  });
 
   return (
     <div className="c-board">
