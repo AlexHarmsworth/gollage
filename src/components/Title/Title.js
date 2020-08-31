@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { updateURLParam, getURLParam } from "../Url/Url";
+import { updateURLParam, getURLParam } from "../../services/Url/Url";
 
 function Title() {
   const titleKey = "title";

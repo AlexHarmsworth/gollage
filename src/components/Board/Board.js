@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { getIDS, extractData } from "../API/API";
+import { getIDS, extractData } from "../../services/API/API";
 import Cache from "../../services/Cache/cache";
 import Card from "../Card/Card";
 import Delete from "../Delete/Delete";

@@ -1,8 +1,11 @@
-import config from "../../config";
+const ENDPOINTS = {
+  SEARCH: "https://api.giphy.com/v1/gifs/search",
+  IDS: "https://api.giphy.com/v1/gifs",
+};
 
 export const getSearch = async ({ query = "", offset = 0 }) => {
   const res = await fetch(
-    `${config.SEARCH_ENDPOINT}?api_key=${config.API_KEY}&q=${query}&offset=${offset}`
+    `${ENDPOINTS.SEARCH}?api_key=${process.env.REACT_APP_API_KEY}&q=${query}&offset=${offset}`
   );
   const json = await res.json();
   return json;
@@ -10,7 +13,7 @@ export const getSearch = async ({ query = "", offset = 0 }) => {
 
 export const getIDS = async (query = "") => {
   const res = await fetch(
-    `${config.IDS_ENDPOINT}?api_key=${config.API_KEY}&ids=${query}`
+    `${ENDPOINTS.IDS}?api_key=${process.env.REACT_APP_API_KEY}&ids=${query}`
   );
   const json = await res.json();
   return json;

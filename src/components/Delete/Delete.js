@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { deleteURLParamValue } from "../Url/Url";
+import { deleteURLParamValue } from "../../services/Url/Url";
 
 function Delete(props) {
   const handleClick = ({ target }) => {
