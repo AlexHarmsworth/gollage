@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Delete() {
+function Delete({ animation }) {
   const classes = useStyles();
 
   const handleClick = ({ target }) => {
@@ -24,9 +24,9 @@ function Delete() {
     const gifID = gif.dataset.id;
     deleteURLParamValue("ids", gifID);
     gif.style.opacity = "0";
-    gif.addEventListener("animationend", function() {
-      this.style.display = "none";
-    })
+    setTimeout(() => {
+      gif.style.display = "none";
+    }, animation);
   };
 
   return (

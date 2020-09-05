@@ -18,9 +18,10 @@ const useStyles = makeStyles(() => ({
 
 function Gif(props) {
   const classes = useStyles();
+  const animationDuration = 500;
 
   return (
-    <Fade in timeout={500}>
+    <Fade in timeout={animationDuration}>
       <Paper
         elevation={5}
         className={classes.root}
@@ -33,7 +34,7 @@ function Gif(props) {
           src={props.url}
           loading="lazy"
         />
-        {props.viewMode ? <Delete /> : <Save />}
+        {props.viewMode ? <Delete animation={animationDuration} /> : <Save animation={animationDuration} />}
       </Paper>
     </Fade>
   );

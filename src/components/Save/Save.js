@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Save() {
+function Save({ animation }) {
   const classes = useStyles();
 
   const handleClick = ({ target }) => {
@@ -24,13 +24,17 @@ function Save() {
     const gifID = gif.dataset.id;
     appendURLParam("ids", gifID);
     gif.style.opacity = "0";
-    gif.addEventListener("animationend", function () {
-      this.style.display = "none";
-    });
+    setTimeout(() => {
+      gif.style.display = "none";
+    }, animation);
   };
 
   return (
-    <IconButton className={classes.root} onClick={handleClick}>
+    <IconButton
+      className={classes.root}
+      onClick={handleClick}
+      onAnimationEnd={() => console.log("react ani end")}
+    >
       <AddCircleOutlineOutlinedIcon fontSize="large" />
     </IconButton>
   );
