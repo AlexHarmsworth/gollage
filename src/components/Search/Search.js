@@ -1,58 +1,40 @@
-import React, { useState } from "react";
-import { getSearch, extractData } from "../../services/API/API";
-import Cache from "../../services/Cache/cache";
-import Gif from "../Gif/Gif";
-import Save from "../Save/Save";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Paper, InputBase } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 
-function Search() {
-  const resultsCacheKey = "searchResults"
-  const queryCacheKey = "searchQuery"
-  const resultsCache = new Cache({ cacheKey: resultsCacheKey });
-  const queryCache = new Cache({ cacheKey: queryCacheKey });
-  const [query, setQuery] = useState(queryCache.get(queryCacheKey)[0] || "");
-  const [data, setData] = useState(resultsCache.get(resultsCacheKey) || []);
-  const randomInt = () => Math.floor(Math.random() * 10);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center",
+    maxWidth: 400,
+    margin: `${theme.spacing(5)}px auto`,
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+    fontFamily: "Permanent Marker, cursive",
+    fontSize: "14px",
+  },
+}));
 
-  const handleClick = async () => {
-    const offset = randomInt();
-    const res = await getSearch({ query, offset });
-    const cleanArr = res.data.map(extractData);
-    setData(cleanArr);
-    resultsCache.set(cleanArr);
-  };
-
-  const handleInput = ({ target }) => {
-    setQuery(target.value);
-    queryCache.set([target.value]);
-  }
+function Search({ callback }) {
+  const classes = useStyles();
 
   return (
-    <div className="c-search">
-      <div className="c-search-area">
-        <input
-          className="c-search-input"
-          placeholder="Search for gifs!"
-          value={query}
-          onChange={handleInput}
-          onKeyDown={ ({ key }) => {
-            if (key === "Enter") {
-              handleClick();
-            }
-          }}
-        ></input>
-        <button type="submit" className="c-search-button" onClick={handleClick}>
-          Go!
-        </button>
-      </div>
-      <div className="c-search-results">
-        {data.map((gif, index) => (
-          <div key={gif.title + index} data-id={gif.id} className="c-search-card">
-            <Gif title={gif.title} url={gif.url} />
-            <Save class={"c-search-save"} />
-          </div>
-        ))}
-      </div>
-    </div>
+    <Paper component="form" className={classes.root} onSubmit={callback}>
+      <InputBase
+        className={classes.input}
+        placeholder="Search for Gifs!"
+        inputProps={{ "aria-label": "search for gifs" }}
+        name="query"
+      />
+      <IconButton type="submit" aria-label="search">
+        <SearchIcon />
+      </IconButton>
+    </Paper>
   );
 }
 
