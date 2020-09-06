@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Save from "../Save/Save";
 import Delete from "../Delete/Delete";
-import { Paper } from "@material-ui/core";
-import { Fade } from "@material-ui/core";
+import { Card, CardMedia, Fade } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -22,20 +21,25 @@ function Gif(props) {
 
   return (
     <Fade in timeout={animationDuration}>
-      <Paper
+      <Card
         elevation={5}
         className={classes.root}
         style={props.style}
         data-id={props.id}
       >
-        <img
+        <CardMedia
           className={classes.img}
+          title={props.title}
           alt={props.title}
+          component="img"
           src={props.url}
-          loading="lazy"
         />
-        {props.viewMode ? <Delete animation={animationDuration} /> : <Save animation={animationDuration} />}
-      </Paper>
+        {props.viewMode ? (
+          <Delete animation={animationDuration} />
+        ) : (
+          <Save animation={animationDuration} />
+        )}
+      </Card>
     </Fade>
   );
 }
