@@ -36,6 +36,7 @@ function Gif(props) {
           autoPlay
           loop
           muted
+          playsInline
         />
         {props.viewMode ? (
           <Delete animation={animationDuration} />
