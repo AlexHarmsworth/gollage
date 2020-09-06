@@ -21,7 +21,7 @@ export const getIDS = async (query = "") => {
 
 export const extractData = (gif) => {
   return {
-    url: gif.images.original.url,
+    url: gif.images.original.mp4,
     id: gif.id,
     title: gif.title,
   };

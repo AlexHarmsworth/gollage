@@ -31,8 +31,11 @@ function Gif(props) {
           className={classes.img}
           title={props.title}
           alt={props.title}
-          component="img"
+          component="video"
           src={props.url}
+          autoPlay
+          loop
+          muted
         />
         {props.viewMode ? (
           <Delete animation={animationDuration} />
