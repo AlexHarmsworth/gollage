@@ -39,7 +39,7 @@ function App() {
       <Switch
         checked={viewMode}
         className={classes.switch}
-        color="primary"
+        color="default"
         inputProps={{ "aria-label": "switch view" }}
         onChange={handleSwitch}
       />

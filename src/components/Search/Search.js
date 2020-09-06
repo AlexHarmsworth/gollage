@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     flex: 1,
     fontFamily: "Permanent Marker, cursive",
-    fontSize: "14px",
+    fontSize: "16px",
   },
 }));
 

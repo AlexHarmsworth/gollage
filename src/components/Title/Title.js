@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     margin: `${theme.spacing(5)}px 0 0 0`,
   },
   h1: {
-    fontSize: "8rem",
+    fontSize: "7rem",
     textAlign: "center",
     fontFamily: "Permanent Marker, cursive",
   },
