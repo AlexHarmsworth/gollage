@@ -9,8 +9,9 @@ const useStyles = makeStyles(() => ({
   root: {
     marginBottom: "1rem",
     position: "relative",
+    minHeight: "150px",
   },
-  img: {
+  video: {
     width: "100%",
   },
 }));
@@ -21,18 +22,13 @@ function Gif(props) {
 
   return (
     <Fade in timeout={animationDuration}>
-      <Card
-        elevation={5}
-        className={classes.root}
-        style={props.style}
-        data-id={props.id}
-      >
+      <Card elevation={5} className={classes.root} data-id={props.id}>
         <CardMedia
-          className={classes.img}
+          className={classes.video}
           title={props.title}
           alt={props.title}
           component="video"
-          src={props.url}
+          data-src={props.url}
           autoPlay
           loop
           muted

@@ -30,11 +30,7 @@ function Save({ animation }) {
   };
 
   return (
-    <IconButton
-      className={classes.root}
-      onClick={handleClick}
-      onAnimationEnd={() => console.log("react ani end")}
-    >
+    <IconButton className={classes.root} onClick={handleClick}>
       <AddCircleOutlineOutlinedIcon fontSize="large" />
     </IconButton>
   );
