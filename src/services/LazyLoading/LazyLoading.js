@@ -1,5 +1,5 @@
 const options = {
-  rootMargin: "0px 0px 200px 0px",
+  rootMargin: "0px 0px 500px 0px",
 };
 
 const io = new IntersectionObserver((entries) => {
